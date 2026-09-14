@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Attendance Management System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-box {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            padding: 10px;
+            flex: 1;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .add-btn {
+            background-color: #333;
+            color: white;
+        }
+
+        .student {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .student-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .student-name {
+            font-weight: bold;
+        }
+
+        .present {
+            color: green;
+            font-weight: bold;
+        }
+
+        .absent {
+            color: red;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            margin-left: 8px;
+        }
+
+        .present-btn {
+            background-color: #ddd;
+        }
+
+        .absent-btn {
+            background-color: #ddd;
+        }
+
+        .delete-btn {
+            background-color: #ddd;
+        }
+
+        .empty {
+            text-align: center;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Student Attendance Management System</h1>
+
+    <div class="form-box">
+
+        <form method="POST" action="/add">
+
+            <input
+                type="text"
+                name="student_id"
+                placeholder="Student ID"
+                required
+            >
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Student Name"
+                required
+            >
+
+            <button type="submit" class="add-btn">
+                Add Student
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% for student in students %}
+
+    <div class="student">
+
+        <div class="student-info">
+
+            <span class="student-name">
+                {{ student["name"] }}
+            </span>
+
+            <span>
+                Student ID: {{ student["student_id"] }}
+            </span>
+
+            {% if student["attendance"] == "Present" %}
+
+                <span class="present">
+                    Present
+                </span>
+
+            {% else %}
+
+                <span class="absent">
+                    Absent
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+        <div>
+
+            <a
+                href="/attendance/{{ student['id'] }}/Present"
+                class="present-btn"
+            >
+                Present
+            </a>
+
+            <a
+                href="/attendance/{{ student['id'] }}/Absent"
+                class="absent-btn"
+            >
+                Absent
+            </a>
+
+            <a
+                href="/delete/{{ student['id'] }}"
+                class="delete-btn"
+            >
+                Delete
+            </a>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+        <p class="empty">
+            No students added yet.
+        </p>
+
+    {% endfor %}
+
+</body>
+
+</html>
