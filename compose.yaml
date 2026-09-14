@@ -1,0 +1,11 @@
+services:
+  web:
+    image: student-attendance-system:v1
+    container_name: student-attendance
+    ports:
+      - "5000:5000"
+    volumes:
+      - attendance_data:/app/data
+
+volumes:
+  attendance_data:
