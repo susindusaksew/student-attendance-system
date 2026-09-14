@@ -1,6 +1,6 @@
 services:
   web:
-    image: student-attendance-system:v1
+    image: susindusaksew/student-attendance-system:latest
     container_name: student-attendance
     ports:
       - "5000:5000"
