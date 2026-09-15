@@ -69,3 +69,6 @@ jobs:
 
       - name: Deploy with Docker Compose
         run: docker compose up -d --force-recreate
+# CI/CD pipeline for Student Attendance System
+
+# CI/CD pipeline for Student Attendance System
